@@ -185,7 +185,7 @@ class SeatingChartApp {
         
         // Filter if needed
         if (filterTable !== 'all') {
-            guests = guests.filter(g => g.table === parseInt(filterTable));
+            guests = guests.filter(g => g.table === parseInt(filterTable, 10));
         }
 
         // Sort by table number, then by name

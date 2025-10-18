@@ -2,6 +2,7 @@
 // This can be easily customized for different events
 const seatingData = {
     eventName: "Sample Event 2024",
+    // x, y coordinates are reserved for future spatial layout enhancements
     tables: [
         { number: 1, capacity: 8, x: 0, y: 0 },
         { number: 2, capacity: 8, x: 1, y: 0 },

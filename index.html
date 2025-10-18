@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locate Your Seat - Digital Seating Chart</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🪑 Locate Your Seat</h1>
+            <p class="subtitle">Find your assigned table quickly and easily</p>
+        </header>
+
+        <main>
+            <div class="search-section">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Enter your name to find your table..." 
+                        autocomplete="off"
+                    >
+                    <button id="searchButton">Search</button>
+                </div>
+                <div id="searchResults" class="search-results hidden"></div>
+            </div>
+
+            <div class="seating-chart-section">
+                <h2>Seating Chart</h2>
+                <div class="legend">
+                    <span class="legend-item"><span class="color-box available"></span> Available</span>
+                    <span class="legend-item"><span class="color-box highlighted"></span> Your Table</span>
+                    <span class="legend-item"><span class="color-box occupied"></span> Reserved</span>
+                </div>
+                <div id="seatingChart" class="seating-chart"></div>
+            </div>
+
+            <div class="guest-list-section">
+                <h2>Guest List</h2>
+                <div class="table-filter">
+                    <label for="tableFilter">Filter by table:</label>
+                    <select id="tableFilter">
+                        <option value="all">All Tables</option>
+                    </select>
+                </div>
+                <div id="guestList" class="guest-list"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>💡 Tip: Click on a table in the chart to see who is seated there</p>
+        </footer>
+    </div>
+
+    <script src="seating-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

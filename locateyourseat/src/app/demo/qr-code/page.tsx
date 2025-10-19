@@ -8,42 +8,43 @@ export default function QRCodePage() {
     const [currentUrl, setCurrentUrl] = useState('');
     const [isGenerating, setIsGenerating] = useState(true);
 
-    // Generate QR code when canvas is ready
-    const generateQRCode = async (url: string) => {
-        if (!canvasRef.current) {
-            console.error('Canvas ref is not available');
-            setIsGenerating(false);
-            return;
-        }
-
-        try {
-            console.log('Generating QR code for URL:', url);
-            await QRCode.toCanvas(canvasRef.current, url, {
-                width: 300,
-                margin: 2,
-                color: {
-                    dark: '#000000',
-                    light: '#FFFFFF'
-                }
-            });
-            console.log('QR code generated successfully');
-            setIsGenerating(false);
-        } catch (error) {
-            console.error('Error generating QR code:', error);
-            setIsGenerating(false);
-        }
-    };
-
     useEffect(() => {
         // Get the current URL
         const url = window.location.origin + '/demo';
         setCurrentUrl(url);
         setIsGenerating(false);
 
+        // Generate QR code when canvas is ready
+        const generateQRCode = async () => {
+            console.log("Generating QR code for URL:", currentUrl);
+            if (!canvasRef.current) {
+                console.error('Canvas ref is not available');
+                setIsGenerating(false);
+                return;
+            }
+
+            try {
+                console.log('Generating QR code for URL:', url);
+                await QRCode.toCanvas(canvasRef.current, url, {
+                    width: 300,
+                    margin: 2,
+                    color: {
+                        dark: '#000000',
+                        light: '#FFFFFF'
+                    }
+                });
+                console.log('QR code generated successfully');
+                setIsGenerating(false);
+            } catch (error) {
+                console.error('Error generating QR code:', error);
+                setIsGenerating(false);
+            }
+        };
+
         // Try to generate QR code immediately, then retry if needed
         const tryGenerate = () => {
             if (canvasRef.current) {
-                generateQRCode(url);
+                generateQRCode();
             } else {
                 // Retry after a short delay
                 setTimeout(tryGenerate, 100);
@@ -52,7 +53,7 @@ export default function QRCodePage() {
 
         // Start trying to generate
         tryGenerate();
-    }, []);
+    }, [currentUrl]);
 
     const downloadQR = () => {
         if (canvasRef.current) {

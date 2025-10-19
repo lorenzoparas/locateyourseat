@@ -32,7 +32,7 @@ export default function SeatLocatorPage() {
         setShowFinalNumber(false);
 
         // Play drumroll sound (using Web Audio API)
-        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+        const audioContext = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
         const oscillator = audioContext.createOscillator();
         const gainNode = audioContext.createGain();
 
@@ -119,7 +119,7 @@ export default function SeatLocatorPage() {
                         </div>
                     ) : filteredGuests.length === 0 ? (
                         <div className="p-4 sm:p-6 text-center text-gray-500">
-                            No guests found matching "{searchQuery}"
+                            No guests found matching &quot;{searchQuery}&quot;
                         </div>
                     ) : (
                         <div className="divide-y divide-gray-200">
